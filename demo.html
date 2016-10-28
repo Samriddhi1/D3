@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>My project</title>
+   <script  src="http://d3js.org/d3.v3.min.js">
+   </script>
+   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+ </head>
+ <body>
+
+   <script>
+//    $(document).ready(function(){
+//      $.ajax({
+//                 type: "GET",
+//                 contentType: "application/json; charset=utf-8",
+//                 url: 'https://85686c07-cb41-4aa1-a121-56a9dae74828-bluemix.cloudant.com/test/08825A',
+//                 dataType: 'json',
+//                 async: true,
+//                 success: function (data) {
+//                  console.log(data.answer);
+//                 },
+//                 error: function (result) {
+//
+//
+//
+//      }
+//         })
+// });
+
+
+       d3.json("https://85686c07-cb41-4aa1-a121-56a9dae74828-bluemix.cloudant.com/test/08825A",function(json){console.log(json)
+
+       var canvas=d3.select("body").append("svg")
+                  .attr("width",500)
+                  .attr("height",500)
+
+        // canvas.selectAll("text")
+        //       .data(json.answer)
+        //       .enter()
+        //             .append("text")
+        //             .attr("y",function(d,i){return i * 90;})
+        //             .attr("fill","black")
+        //             .text(function(d){return d.name;})
+                  canvas.selectAll("rect")
+                  .data(json.answer)
+                  .enter()
+                    .append("rect")
+                    .attr("width",function(d) {return d.age * 10;})
+                    .attr("height",45)
+                    .attr("y", function(d,i){return i * 50;})
+                    .attr("fill","blue");
+
+                    canvas.selectAll("text")
+                    .data(json.answer)
+                    .enter()
+                    .append("text")
+                    .attr("fill","white")
+                    .attr("y", function(d,i){return i * 50+45;})
+                    .text(function(d) {return d.name;})
+
+
+                  })
+
+     </script>
+
+ </body>
+</html>
